@@ -9,26 +9,26 @@ const theme = {
 export const getDesignTokens = (mode) => ({
   typography: {
     fontFamily: "Lato",
+    h1: {
+      fontWeight: 700,
+    },
   },
   palette: {
     mode,
     ...(mode === "light"
       ? {
           // palette values for light mode
-          back: {
-            main: "white",
-            main2: "#311573",
+          background: {
+            primary: "#461622",
+            secondary: "#632599",
+          },
+          button: {
+            active: "#621b1f",
           },
           primary: {
-            main: "#556cd6",
+            main: "#461622",
             dark: "#000000",
             light: "#2b859e",
-          },
-          borderCard: {
-            main: "#ffffff",
-          },
-          backgroundColor: {
-            default: "#311573",
           },
         }
       : {

@@ -1,16 +1,18 @@
 import { useThemeContext } from "./theme/ThemeContextProvider";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box, ThemeProvider } from "@mui/material";
-import LandingPage from "./LandingPage";
 import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
-import Register from "./pages/Register";
 import Navbar from "./components/navbar/Navbar";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
+import Events from "./pages/Events";
 
 const navLinks = [
-  { title: "home", path: "/" },
-  { title: "login", path: "/login" },
-  { title: "register", path: "/register" },
+  { title: "Inicio", path: "/" },
+  { title: "Quienes Somos", path: "/about" },
+  { title: "Contactanos", path: "/contact" },
+  { title: "Eventos", path: "/events" },
 ];
 
 function App() {
@@ -22,15 +24,17 @@ function App() {
         <CssBaseline />
         <Box
           sx={{
-            backgroundColor: "back.main",
             width: "100vw",
             height: "100vh",
+            overflowX: "hidden",
           }}
         >
           <Navbar navLinks={navLinks} />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/events" element={<Events />} />
           </Routes>
         </Box>
       </ThemeProvider>
@@ -39,3 +43,5 @@ function App() {
 }
 
 export default App;
+/*
+ */

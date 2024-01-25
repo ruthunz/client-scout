@@ -1,5 +1,5 @@
 export const drawerStyle = {
-  width: 250,
-  bgcolor: "lightsalmon",
-  height: 300,
+  width: "100vw",
+  bgcolor: "background.primary",
+  height: "100%",
 };

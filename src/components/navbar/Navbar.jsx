@@ -14,25 +14,14 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = ({ navLinks }) => {
   const [OpenDrawer, setOpenDrawer] = useState(false);
+  const [selected, setSelected] = useState("Inicio");
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="fixed" sx={{ backgroundColor: "background.primary" }}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", sm: "flex", md: "none", lg: "none" },
-            }}
-            onClick={() => setOpenDrawer(true)}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            Brownsea Scouts
           </Typography>
           <Box
             sx={{
@@ -45,11 +34,28 @@ const Navbar = ({ navLinks }) => {
                 key={item.title}
                 component={NavLink}
                 to={item.path}
+                sx={{
+                  backgroundColor:
+                    selected === item.title ? "button.active" : "inherit",
+                }}
+                onClick={() => setSelected(item.title)}
               >
                 {item.title}
               </Button>
             ))}
           </Box>
+          <IconButton
+            size="large"
+            edge="end"
+            color="inherit"
+            aria-label="menu"
+            sx={{
+              display: { xs: "flex", sm: "flex", md: "none", lg: "none" },
+            }}
+            onClick={() => setOpenDrawer(true)}
+          >
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
 
@@ -59,7 +65,12 @@ const Navbar = ({ navLinks }) => {
         onClose={() => setOpenDrawer(false)}
         sx={{ display: { xs: "flex", sm: "flex", md: "none", lg: "none" } }}
       >
-        <NavListDrawer navLinks={navLinks} />
+        <NavListDrawer
+          navLinks={navLinks}
+          setOpenDrawer={setOpenDrawer}
+          selected={selected}
+          setSelected={setSelected}
+        />
       </Drawer>
     </Box>
   );
