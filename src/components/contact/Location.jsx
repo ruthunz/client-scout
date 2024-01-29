@@ -11,10 +11,8 @@ const Location = () => {
         flexWrap: "wrap",
         height: "50%",
         justifyContent: "center",
-        alignContent: "center",
         overflowY: "auto",
-        padding: "64px 8px 0 8px",
-        backgroundColor: " coral",
+        padding: "8px 8px 0 8px",
       }}
       component={motion.div}
       initial={{ opacity: 0 }}

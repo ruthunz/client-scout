@@ -17,7 +17,13 @@ const Navbar = ({ navLinks }) => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ backgroundColor: "transparent" }}>
+      <AppBar
+        sx={{
+          height: "80px",
+          position: "relative",
+          justifyContent: "center",
+        }}
+      >
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Brownsea
@@ -34,7 +40,6 @@ const Navbar = ({ navLinks }) => {
                 component={NavLink}
                 to={item.path}
                 sx={{
-                  height: "92px",
                   fontSize: "16px",
                   borderRadius: 0,
                   "&.active": {

@@ -10,7 +10,6 @@ const Contact = () => {
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
-        paddingTop: "5%",
         height: "100%",
         width: "100%",
         backgroundColor: "brand.lightgrey",
@@ -22,14 +21,9 @@ const Contact = () => {
           alignItems: "center",
           backgroundColor: "background.primary",
           display: "flex",
-          height: { xs: "13%", sm: "13%", md: "100%", lg: "100%" },
+          height: { xs: "12%", sm: "12%", md: "100%", lg: "100%" },
           flexDirection: "column",
-          justifyContent: {
-            xs: "end",
-            sm: "end",
-            md: "center",
-            lg: "center",
-          },
+          justifyContent: "center",
           width: { xs: "100%", sm: "100%", md: "50%", lg: "50%" },
           clipPath: "polygon(0 0, 80% 0, 100% 100%, 0% 100%)",
         }}
@@ -61,7 +55,7 @@ const Contact = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          height: { xs: "87%", sm: "87%", md: "100%", lg: "100%" },
+          height: { xs: "88%", sm: "88%", md: "100%", lg: "100%" },
           width: { xs: "100%", sm: "100%", md: "50%", lg: "50%" },
         }}
       >

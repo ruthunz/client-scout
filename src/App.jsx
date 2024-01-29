@@ -7,6 +7,8 @@ import Navbar from "./components/navbar/Navbar";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Events from "./pages/Events";
+import Brownsea from "./components/about/Brownsea";
+import Fundaments from "./components/about/Fundaments";
 
 const navLinks = [
   { title: "Inicio", path: "/" },
@@ -27,12 +29,21 @@ function App() {
             width: "100vw",
             height: "100vh",
             overflowX: "hidden",
+            overflowY: "hidden",
           }}
         >
           <Navbar navLinks={navLinks} />
           <Routes>
+            <Route index element={<Home />} />
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={<About />}>
+              <Route index element={<Brownsea />} />
+              <Route path="brownsea" element={<Brownsea />} />
+              <Route path="fundaments" element={<Fundaments />} />
+              <Route path="definition" element={<Brownsea />} />
+              <Route path="purpose" element={<Brownsea />} />
+              <Route path="mision" element={<Brownsea />} />
+            </Route>
             <Route path="/contact" element={<Contact />} />
             <Route path="/events" element={<Events />} />
           </Routes>

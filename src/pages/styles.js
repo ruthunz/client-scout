@@ -8,7 +8,7 @@ export const homeContainer = {
   backgroundRepeat: "no-repeat",
   backgroundColor: "brand.grey",
   paddingTop: "4%",
-  height: "100%",
+  height: "92%",
   width: "100%",
   display: "flex",
   justifyContent: "center",

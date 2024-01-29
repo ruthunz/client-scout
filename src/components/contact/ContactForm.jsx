@@ -160,7 +160,11 @@ const ContactForm = () => {
                 variant="text"
                 fullWidth
                 disabled={isSubmitting}
-                sx={{ bgcolor: "background.primary", color: "white" }}
+                sx={{
+                  bgcolor: "background.primary",
+                  color: "white",
+                  borderRadius: 0,
+                }}
               >
                 Enviar
               </Button>
