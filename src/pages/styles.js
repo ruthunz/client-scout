@@ -1,16 +1,19 @@
 // HOME
-import Image from "/scoutsmain.jpg";
+import Image from "/pngwing.com2.png";
 
 export const homeContainer = {
   backgroundImage: `url(${Image})`,
+  //backgroundSize: { xs: "cover", sm: "cover", md: "contain", lg: "contain" },
   backgroundSize: "cover",
-  backgroundColor: "red",
+  backgroundRepeat: "no-repeat",
+  backgroundColor: "brand.grey",
+  paddingTop: "4%",
   height: "100%",
   width: "100%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  overflowY: "hide",
+  overflowY: "hidden",
 };
 
 export const homeContainerSection2 = {

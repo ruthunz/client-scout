@@ -1,22 +1,37 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import ContactForm from "../components/contact/ContactForm";
+import Location from "../components/contact/Location";
 
 const Contact = () => {
   return (
     <Box
-      mt={8}
-      sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        paddingTop: "5%",
+        height: "100%",
+        width: "100%",
+        backgroundColor: "brand.lightgrey",
+        overflowY: "hidden",
+      }}
     >
       <Box
         sx={{
           alignItems: "center",
           backgroundColor: "background.primary",
           display: "flex",
-          height: { xs: "10vh", sm: "10vh", md: "93vh", lg: "93vh" },
+          height: { xs: "13%", sm: "13%", md: "100%", lg: "100%" },
           flexDirection: "column",
-          justifyContent: "center",
-          width: { xs: "100%", sm: "100%", md: "40%", lg: "40%" },
+          justifyContent: {
+            xs: "end",
+            sm: "end",
+            md: "center",
+            lg: "center",
+          },
+          width: { xs: "100%", sm: "100%", md: "50%", lg: "50%" },
+          clipPath: "polygon(0 0, 80% 0, 100% 100%, 0% 100%)",
         }}
       >
         <Typography
@@ -24,13 +39,13 @@ const Contact = () => {
             typography: {
               xs: "h5",
               sm: "h5",
-              md: "h2",
-              lg: "h1",
+              md: "h3",
+              lg: "h2",
             },
             color: "white",
           }}
         >
-          BROWNSEA
+          GRUPO SCOUT
         </Typography>
         <Typography
           sx={{
@@ -39,18 +54,18 @@ const Contact = () => {
             fontWeight: "700",
           }}
         >
-          SCOUTS
+          BROWNSEA
         </Typography>
       </Box>
       <Box
         sx={{
-          alignItems: "center",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          width: { xs: "100%", sm: "100%", md: "60%", lg: "60%" },
+          height: { xs: "87%", sm: "87%", md: "100%", lg: "100%" },
+          width: { xs: "100%", sm: "100%", md: "50%", lg: "50%" },
         }}
       >
+        <Location />
         <ContactForm />
       </Box>
     </Box>
@@ -58,3 +73,111 @@ const Contact = () => {
 };
 
 export default Contact;
+/*
+      <Box
+        sx={{
+          alignItems: "center",
+          backgroundColor: "background.primary",
+          display: "flex",
+          height: { xs: "13%", sm: "13%", md: "100%", lg: "100%" },
+          flexDirection: "column",
+          justifyContent: {
+            xs: "end",
+            sm: "end",
+            md: "center",
+            lg: "center",
+          },
+          width: { xs: "100%", sm: "100%", md: "50%", lg: "50%" },
+          clipPath: "polygon(0 0, 80% 0, 100% 100%, 0% 100%)",
+        }}
+      >
+        <Typography
+          sx={{
+            typography: {
+              xs: "h5",
+              sm: "h5",
+              md: "h3",
+              lg: "h2",
+            },
+            color: "white",
+          }}
+        >
+          GRUPO SCOUT
+        </Typography>
+        <Typography
+          sx={{
+            typography: { xs: "h5", sm: "h5", md: "h2", lg: "h1" },
+            color: "white",
+            fontWeight: "700",
+          }}
+        >
+          BROWNSEA
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: { xs: "87%", sm: "87%", md: "100%", lg: "100%" },
+          width: { xs: "100%", sm: "100%", md: "50%", lg: "50%" },
+        }}
+      >
+        <Location />
+        <ContactForm />
+      </Box>
+*/
+
+/*
+
+      <Box
+        sx={{
+          alignItems: "center",
+          backgroundColor: "background.primary",
+          display: "flex",
+          height: { xs: "13%", sm: "13%", md: "100%", lg: "100%" },
+          flexDirection: "column",
+          justifyContent: {
+            xs: "end",
+            sm: "end",
+            md: "center",
+            lg: "center",
+          },
+          width: { xs: "100%", sm: "100%", md: "50%", lg: "50%" },
+          clipPath: "polygon(0 0, 80% 0, 100% 100%, 0% 100%)",
+        }}
+      >
+        <Typography
+          sx={{
+            typography: {
+              xs: "h5",
+              sm: "h5",
+              md: "h3",
+              lg: "h2",
+            },
+            color: "white",
+          }}
+        >
+          GRUPO SCOUT
+        </Typography>
+        <Typography
+          sx={{
+            typography: { xs: "h5", sm: "h5", md: "h2", lg: "h1" },
+            color: "white",
+            fontWeight: "700",
+          }}
+        >
+          BROWNSEA
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: { xs: "87%", sm: "87%", md: "100%", lg: "100%" },
+          width: { xs: "100%", sm: "100%", md: "50%", lg: "50%" },
+          backgroundColor: "coral",
+        }}
+      >
+        <Location />
+      </Box>
+*/

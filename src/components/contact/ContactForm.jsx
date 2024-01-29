@@ -54,9 +54,9 @@ const ContactForm = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        paddingTop: "16px",
-        height: "100%",
+        height: "50%",
+        padding: "8px 8px 0px 8px",
+        overflowY: "auto",
       }}
       component={motion.div}
       initial={{ opacity: 0 }}
@@ -65,97 +65,109 @@ const ContactForm = () => {
     >
       <Typography
         sx={{
-          typography: { xs: "h5", sm: "h5", md: "h3", lg: "h3" },
+          typography: { xs: "h5", sm: "h5", md: "h4", lg: "h4" },
           color: "black",
           fontWeight: "700",
         }}
       >
-        Envíanos un Correo
+        ENVIANOS UN CORREO
       </Typography>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={1}>
-          <Grid xs={12} sm={6} item>
-            <TextField
-              placeholder="Tu nombre aquí"
-              label="nombre"
-              variant="standard"
-              fullWidth
-              required
-              value={values.firstName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              id="firstName"
-              sx={{ input: { color: "background.primary" } }}
-            />
-            {errors.firstName && touched.firstName && (
-              <p style={{ color: "red" }}>{errors.firstName}</p>
-            )}
-          </Grid>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          padding: "16px 8px 16px 8px",
+        }}
+        component={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={1}>
+            <Grid xs={12} sm={6} item>
+              <TextField
+                placeholder="Tu nombre aquí"
+                label="nombre"
+                variant="standard"
+                fullWidth
+                required
+                value={values.firstName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="firstName"
+                sx={{ input: { color: "background.primary" } }}
+              />
+              {errors.firstName && touched.firstName && (
+                <p style={{ color: "red" }}>{errors.firstName}</p>
+              )}
+            </Grid>
 
-          <Grid xs={12} sm={6} item>
-            <TextField
-              placeholder="Tu apellido aquí"
-              label="apellido"
-              variant="standard"
-              fullWidth
-              required
-              value={values.lastName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              id="lastName"
-            />
-            {errors.lastName && touched.lastName && (
-              <p style={{ color: "red" }}>{errors.lastName}</p>
-            )}
+            <Grid xs={12} sm={6} item>
+              <TextField
+                placeholder="Tu apellido aquí"
+                label="apellido"
+                variant="standard"
+                fullWidth
+                required
+                value={values.lastName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="lastName"
+              />
+              {errors.lastName && touched.lastName && (
+                <p style={{ color: "red" }}>{errors.lastName}</p>
+              )}
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                type="email"
+                placeholder="Tu correo electrónico"
+                label="correo electrónico"
+                variant="standard"
+                fullWidth
+                required
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="email"
+              />
+              {errors.email && touched.email && (
+                <p style={{ color: "red" }}>{errors.email}</p>
+              )}
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Mensaje"
+                multiline
+                rows={3}
+                placeholder="Escribe tu mensaje"
+                variant="standard"
+                fullWidth
+                required
+                value={values.message}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="message"
+              />
+              {errors.message && touched.message && (
+                <p style={{ color: "red" }}>{errors.message}</p>
+              )}
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                type="submit"
+                variant="text"
+                fullWidth
+                disabled={isSubmitting}
+                sx={{ bgcolor: "background.primary", color: "white" }}
+              >
+                Enviar
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              type="email"
-              placeholder="Tu correo electrónico"
-              label="correo electrónico"
-              variant="standard"
-              fullWidth
-              required
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              id="email"
-            />
-            {errors.email && touched.email && (
-              <p style={{ color: "red" }}>{errors.email}</p>
-            )}
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label="Mensaje"
-              multiline
-              rows={3}
-              placeholder="Escribe tu mensaje"
-              variant="standard"
-              fullWidth
-              required
-              value={values.message}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              id="message"
-            />
-            {errors.message && touched.message && (
-              <p style={{ color: "red" }}>{errors.message}</p>
-            )}
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              variant="text"
-              fullWidth
-              disabled={isSubmitting}
-              sx={{ bgcolor: "background.primary", color: "white" }}
-            >
-              Enviar
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
+        </form>
+      </Box>
     </Box>
   );
 };

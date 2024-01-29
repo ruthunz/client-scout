@@ -13,20 +13,37 @@ export const getDesignTokens = (mode) => ({
       fontWeight: 700,
     },
   },
+  components: {
+    MuiToolbarRoot: {
+      styleOverrides: {
+        dense: {
+          height: 80,
+          minHeight: 80,
+        },
+      },
+    },
+  },
   palette: {
     mode,
     ...(mode === "light"
       ? {
           // palette values for light mode
           background: {
-            primary: "#461622",
+            primary: "#401520",
             secondary: "#632599",
+          },
+          brand: {
+            brown: "#401520",
+            lightbrown: "#59191E",
+            pinkbrown: "#784951",
+            grey: "#A9A4A8",
+            lightgrey: "#E9EAE5",
           },
           button: {
             active: "#621b1f",
           },
           primary: {
-            main: "#461622",
+            main: "#401520",
             dark: "#000000",
             light: "#2b859e",
           },

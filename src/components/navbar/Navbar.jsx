@@ -14,14 +14,13 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = ({ navLinks }) => {
   const [OpenDrawer, setOpenDrawer] = useState(false);
-  const [selected, setSelected] = useState("Inicio");
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ backgroundColor: "background.primary" }}>
+      <AppBar position="fixed" sx={{ backgroundColor: "transparent" }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Brownsea Scouts
+            Brownsea
           </Typography>
           <Box
             sx={{
@@ -35,10 +34,13 @@ const Navbar = ({ navLinks }) => {
                 component={NavLink}
                 to={item.path}
                 sx={{
-                  backgroundColor:
-                    selected === item.title ? "button.active" : "inherit",
+                  height: "92px",
+                  fontSize: "16px",
+                  borderRadius: 0,
+                  "&.active": {
+                    backgroundColor: "brand.pinkbrown",
+                  },
                 }}
-                onClick={() => setSelected(item.title)}
               >
                 {item.title}
               </Button>
@@ -65,12 +67,7 @@ const Navbar = ({ navLinks }) => {
         onClose={() => setOpenDrawer(false)}
         sx={{ display: { xs: "flex", sm: "flex", md: "none", lg: "none" } }}
       >
-        <NavListDrawer
-          navLinks={navLinks}
-          setOpenDrawer={setOpenDrawer}
-          selected={selected}
-          setSelected={setSelected}
-        />
+        <NavListDrawer navLinks={navLinks} setOpenDrawer={setOpenDrawer} />
       </Drawer>
     </Box>
   );

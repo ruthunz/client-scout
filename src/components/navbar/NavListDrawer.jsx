@@ -9,12 +9,7 @@ import React from "react";
 import { drawerStyle } from "./styles";
 import { NavLink } from "react-router-dom";
 
-const NavListDrawer = ({ navLinks, setOpenDrawer, selected, setSelected }) => {
-  const selectOption = (item) => {
-    setSelected(item.title);
-    setOpenDrawer(false);
-  };
-
+const NavListDrawer = ({ navLinks, setOpenDrawer }) => {
   return (
     <Box sx={drawerStyle}>
       <nav>
@@ -26,14 +21,17 @@ const NavListDrawer = ({ navLinks, setOpenDrawer, selected, setSelected }) => {
               divider
               sx={{
                 color: "white",
-                backgroundColor:
-                  selected === item.title ? "button.active" : "inherit",
               }}
             >
               <ListItemButton
                 component={NavLink}
                 to={item.path}
-                onClick={() => selectOption(item)}
+                onClick={() => setOpenDrawer(false)}
+                sx={{
+                  "&.active": {
+                    backgroundColor: "brand.pinkbrown",
+                  },
+                }}
               >
                 <ListItemText primary={item.title} />
               </ListItemButton>
