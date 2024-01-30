@@ -17,7 +17,7 @@ const About = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "brand.lightgrey",
+        backgroundColor: "brand.grey",
         display: "flex",
         justifyContent: "center",
         flexWrap: "wrap",
@@ -36,10 +36,9 @@ const About = () => {
       </Box>
       <Box
         sx={{
-          height: "100%",
           width: { xs: "100%", sm: "100%", md: "30%", lg: "30%" },
           backgroundColor: "background.primary",
-          clipPath: "polygon(30% 0, 100% 0, 100% 100%, 0% 100%)",
+          clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)",
         }}
       >
         <Sidebar navLinks={SideBarLinks}></Sidebar>
@@ -48,13 +47,3 @@ const About = () => {
   );
 };
 export default About;
-/* 
-
-        <Routes>
-          <Route path="/about/brownsea" element={<Brownsea />} />
-          <Route path="/about/fundaments" element={<Fundaments />} />
-          <Route path="/about/definition" element={<Brownsea />} />
-          <Route path="/about/purpose" element={<Brownsea />} />
-          <Route path="/about/mision" element={<Brownsea />} />
-        </Routes>
-*/

@@ -9,6 +9,9 @@ import About from "./pages/About";
 import Events from "./pages/Events";
 import Brownsea from "./components/about/Brownsea";
 import Fundaments from "./components/about/Fundaments";
+import Mision from "./components/about/Mision";
+import Definition from "./components/about/Definition";
+import Purpose from "./components/about/Purpose";
 
 const navLinks = [
   { title: "Inicio", path: "/" },
@@ -40,9 +43,9 @@ function App() {
               <Route index element={<Brownsea />} />
               <Route path="brownsea" element={<Brownsea />} />
               <Route path="fundaments" element={<Fundaments />} />
-              <Route path="definition" element={<Brownsea />} />
-              <Route path="purpose" element={<Brownsea />} />
-              <Route path="mision" element={<Brownsea />} />
+              <Route path="definition" element={<Definition />} />
+              <Route path="purpose" element={<Purpose />} />
+              <Route path="mision" element={<Mision />} />
             </Route>
             <Route path="/contact" element={<Contact />} />
             <Route path="/events" element={<Events />} />
@@ -54,5 +57,3 @@ function App() {
 }
 
 export default App;
-/*
- */

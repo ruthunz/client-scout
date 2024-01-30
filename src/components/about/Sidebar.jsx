@@ -28,7 +28,8 @@ const Sidebar = ({ navLinks }) => {
               onClick={() => setOpenDrawer(false)}
               sx={{
                 "&.active": {
-                  backgroundColor: "brand.lightgrey",
+                  backgroundColor: "brand.grey",
+                  color: "brand.brown",
                 },
               }}
             >

@@ -39,6 +39,10 @@ export const getDesignTokens = (mode) => ({
             grey: "#A9A4A8",
             lightgrey: "#E9EAE5",
           },
+          text: {
+            title: "#151922",
+            body: "#20252e",
+          },
           button: {
             active: "#621b1f",
           },
