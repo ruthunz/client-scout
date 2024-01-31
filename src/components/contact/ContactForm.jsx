@@ -54,9 +54,7 @@ const ContactForm = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: "50%",
         padding: "8px 8px 80px 8px",
-        overflowY: "auto",
       }}
       component={motion.div}
       initial={{ opacity: 0 }}

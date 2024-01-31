@@ -9,9 +9,7 @@ const Location = () => {
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
-        height: "50%",
         justifyContent: "center",
-        overflowY: "auto",
         padding: "8px 8px 0 8px",
       }}
       component={motion.div}

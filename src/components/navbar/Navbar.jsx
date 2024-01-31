@@ -25,6 +25,13 @@ const Navbar = ({ navLinks }) => {
         }}
       >
         <Toolbar>
+          <Box
+            component={NavLink}
+            to={"/"}
+            sx={{ width: "70px", height: "70px", margin: "0 8px 0 8px" }}
+          >
+            <img src="/brownseaScoutLogo.png" width="100%"></img>
+          </Box>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Brownsea
           </Typography>
