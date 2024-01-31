@@ -3,10 +3,9 @@ import Image from "/pngwing.com2.png";
 
 export const homeContainer = {
   backgroundImage: `url(${Image})`,
-  //backgroundSize: { xs: "cover", sm: "cover", md: "contain", lg: "contain" },
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
-  backgroundColor: "brand.grey",
+  backgroundColor: "black",
   paddingTop: "4%",
   height: "92%",
   width: "100%",
@@ -25,10 +24,15 @@ export const homeContainerSection2 = {
 };
 
 export const flame = {
-  width: "250px",
-  height: "250px",
+  width: { xs: "350px", sm: "350px", md: "550px", lg: "550px" },
+  height: { xs: "350px", sm: "350px", md: "550px", lg: "550px" },
   background: "linear-gradient(-45deg, red, orange)",
-  borderRadius: "250px 250px 0px 250px",
+  borderRadius: {
+    xs: "350px 350px 0px 350px",
+    sm: "350px 350px 0px 350px",
+    md: "550px 550px 0px 550px",
+    lg: "550px 550px 0px 550px",
+  },
   transform: "rotate(-135deg)",
   animation: ".1s flame infinite",
   filter: "blur(10px)",
@@ -39,14 +43,19 @@ export const flame = {
   borderTopWidth: "25px",
   "&::before": {
     content: '""',
-    width: "200px",
-    height: "200px",
+    width: { xs: "350px", sm: "350px", md: "550px", lg: "550px" },
+    height: { xs: "350px", sm: "350px", md: "550px", lg: "550px" },
     display: "block",
     position: "absolute",
     background: "linear-gradient(-45deg, red, orange)",
     animation: ".2s flame infinite",
     transform: "scale(.8) rotate(20deg)",
-    borderRadius: "200px 200px 0px 200px",
+    borderRadius: {
+      xs: "350px 350px 0px 350px",
+      sm: "350px 350px 0px 350px",
+      md: "550px 550px 0px 550px",
+      lg: "550px 550px 0px 550px",
+    },
     top: "20px",
   },
   "&::before": {
@@ -55,8 +64,8 @@ export const flame = {
     transform: "scale(.9) rotate(-15deg) translate(10px, 0px)",
   },
   "@keyframes flame": {
-    "0%": { height: "250px", width: "250px" },
-    "50%": { height: "240px", width: "240px" },
-    "100%": { height: "250px", width: "250px" },
+    "0%": { height: "100%", width: "100%" },
+    "50%": { height: "98%", width: "98%" },
+    "100%": { height: "100%", width: "100%" },
   },
 };

@@ -15,10 +15,20 @@ const Home = () => {
         >
           <Box
             sx={{
-              width: { xs: "100%", sm: "100%", md: "60%", lg: "60%" },
+              position: "relative",
+              width: { xs: "450px", sm: "450px", md: "650px", lg: "650px" },
+              height: { xs: "450px", sm: "450px", md: "650px", lg: "650px" },
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            <img src="/brownseaScoutLogo.png" width="100%"></img>
+            <img
+              src="/brownseaScoutLogo.png"
+              width="82%"
+              style={{ position: "absolute", zIndex: 100, paddingBottom: "8%" }}
+            ></img>
+            <Box sx={flame}></Box>
           </Box>
         </Box>
       </Box>
@@ -27,27 +37,3 @@ const Home = () => {
 };
 
 export default Home;
-//<img src="/brownseaScoutLogo.png" width="100%"></img>
-//<Box sx={flame}></Box>
-
-/*
-<Box
-            sx={{
-              width: { xs: "100%", sm: "100%", md: "60%", lg: "60%" },
-              backgroundColor: "black",
-              position: "relative",
-              // width: "400px",
-              // height: "400px",
-              // display: "flex",
-              // alignItems: "center",
-              // justifyContent: "center",
-            }}
-          >
-            <img
-              src="/brownseaScoutLogo.png"
-              width="100%"
-              style={{ position: "absolute", zIndex: 100 }}
-            ></img>
-            <Box sx={flame}></Box>
-          </Box>
-*/
