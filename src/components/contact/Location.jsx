@@ -28,7 +28,7 @@ const Location = () => {
         <Typography
           sx={{
             typography: { xs: "h5", sm: "h5", md: "h4", lg: "h4" },
-            color: "black",
+            color: "brand.brown",
             fontWeight: "700px",
             marginBottom: "16px",
           }}
@@ -59,7 +59,7 @@ const Location = () => {
         <Typography
           sx={{
             typography: { xs: "h5", sm: "h5", md: "h4", lg: "h4" },
-            color: "black",
+            color: "brand.brown",
             fontWeight: "700",
             marginBottom: "16px",
           }}

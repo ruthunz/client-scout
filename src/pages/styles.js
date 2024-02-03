@@ -1,5 +1,5 @@
 // HOME
-import Image from "/pngwing.com2.png";
+import Image from "/homeBackground.png";
 
 export const homeContainer = {
   backgroundImage: `url(${Image})`,

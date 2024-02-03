@@ -64,7 +64,7 @@ const ContactForm = () => {
       <Typography
         sx={{
           typography: { xs: "h5", sm: "h5", md: "h4", lg: "h4" },
-          color: "black",
+          color: "brand.brown",
           fontWeight: "700",
         }}
       >

@@ -26,7 +26,11 @@ const Home = () => {
             <img
               src="/brownseaScoutLogo.png"
               width="82%"
-              style={{ position: "absolute", zIndex: 100, paddingBottom: "8%" }}
+              style={{
+                position: "absolute",
+                zIndex: 100,
+                paddingBottom: "12%",
+              }}
             ></img>
             <Box sx={flame}></Box>
           </Box>

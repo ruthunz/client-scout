@@ -40,7 +40,7 @@ export const getDesignTokens = (mode) => ({
             lightgrey: "#E9EAE5",
           },
           text: {
-            title: "#151922",
+            title: "#401520",
             body: "#20252e",
           },
           button: {
