@@ -5,7 +5,7 @@ export const homeContainer = {
   backgroundImage: `url(${Image})`,
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
-  backgroundColor: "black",
+  backgroundColor: "#240c12",
   paddingTop: "4%",
   height: "92%",
   width: "100%",
