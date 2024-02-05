@@ -7,7 +7,7 @@ const Location = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         flexWrap: "wrap",
         justifyContent: "center",
         padding: "8px 8px 0 8px",
@@ -21,7 +21,7 @@ const Location = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          width: { xs: "100%", sm: "100%", md: "50%", lg: "50%" },
+          width: { xs: "100%", sm: "100%", md: "100%", lg: "100%" },
           marginBottom: "16px",
         }}
       >
@@ -33,43 +33,30 @@ const Location = () => {
             marginBottom: "16px",
           }}
         >
-          NUESTRAS REDES
+          NUESTRAS REDES Y UBICACION
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "start" }}>
-          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-          ab illo inventore veritatis et quasi architecto beatae vitae dicta
-          sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-          aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-          qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
-          dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
-          quia non numquam eius modi tempora incidunt ut labore et dolore magnam
-          aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
-          exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex
-          ea commodi consequatur?
+          <ul>
+            <li>
+              <strong>Teléfono:</strong> +591 79955350
+            </li>
+            <li>
+              <strong>Correo:</strong> gruposcoutbrownsea19@gmail.com
+            </li>
+          </ul>
         </Box>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          width: { xs: "100%", sm: "100%", md: "50%", lg: "50%" },
-        }}
-      >
-        <Typography
+        <Box
           sx={{
-            typography: { xs: "h5", sm: "h5", md: "h4", lg: "h4" },
-            color: "brand.brown",
-            fontWeight: "700",
-            marginBottom: "16px",
+            display: "flex",
+            flexDirection: "column",
+            width: { xs: "100%", sm: "100%", md: "100%", lg: "100%" },
+
+            alignItems: "center",
           }}
         >
-          NUESTRA UBICACION
-        </Typography>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
           <iframe
-            src="https://www.google.com/maps/d/embed?mid=1JThFFDHU8MT9DyiQYOVWV0_aYskx6Dhu&ehbc=2E312F"
-            width="98%"
+            src="https://www.google.com/maps/d/embed?mid=13o9mncWPwV4VVjAoxt3SfVXPnpQ70cg&ehbc=2E312F"
+            width="100%"
             height="250px"
           ></iframe>
         </Box>
