@@ -15,7 +15,7 @@ const Fundaments = () => {
         height: "100%",
         backgroundColor: "brand.lightgrey",
         paddingLeft: { xs: "8px", sm: "8px", md: "12%", lg: "12%" },
-        clipPath: "polygon(0 0, 100% 0, 91% 100%, 0% 100%)",
+        clipPath: "polygon(0 0, 100% 0, 93% 100%, 0% 100%)",
       }}
     >
       <Box

@@ -29,14 +29,14 @@ const About = () => {
       <Box
         sx={{
           height: "100%",
-          width: { xs: "100%", sm: "100%", md: "70%", lg: "70%" },
+          width: { xs: "100%", sm: "100%", md: "76%", lg: "76%" },
         }}
       >
         <Outlet />
       </Box>
       <Box
         sx={{
-          width: { xs: "100%", sm: "100%", md: "30%", lg: "30%" },
+          width: { xs: "100%", sm: "100%", md: "24%", lg: "24%" },
           backgroundColor: "background.primary",
           clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)",
         }}

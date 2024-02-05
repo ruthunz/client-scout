@@ -12,6 +12,12 @@ export const getDesignTokens = (mode) => ({
     h1: {
       fontWeight: 700,
     },
+    h2: {
+      fontWeight: 500,
+    },
+    h3: {
+      fontWeight: 500,
+    },
   },
   components: {
     MuiToolbarRoot: {
