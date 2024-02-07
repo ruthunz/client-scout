@@ -44,6 +44,7 @@ export const getDesignTokens = (mode) => ({
             pinkbrown: "#784951",
             grey: "#A9A4A8",
             lightgrey: "#E9EAE5",
+            scout: "#632599",
           },
           text: {
             title: "#401520",

@@ -12,12 +12,15 @@ import Fundaments from "./components/about/Fundaments";
 import Mision from "./components/about/Mision";
 import Definition from "./components/about/Definition";
 import Purpose from "./components/about/Purpose";
+import SignIn from "./pages/SignIn";
+import sessionService from "./services/session.service";
 
 const navLinks = [
   { title: "Inicio", path: "/" },
   { title: "Quienes Somos", path: "/about" },
   { title: "Contactanos", path: "/contact" },
   { title: "Eventos", path: "/events" },
+  { title: sessionService.isLogged() ? "Salir" : "Ingresar", path: "/login" },
 ];
 
 function App() {
@@ -49,6 +52,7 @@ function App() {
             </Route>
             <Route path="/contact" element={<Contact />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/login" element={<SignIn />} />
           </Routes>
         </Box>
       </ThemeProvider>

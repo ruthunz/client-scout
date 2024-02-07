@@ -19,7 +19,7 @@ const Contact = () => {
       <Box
         sx={{
           alignItems: "center",
-          backgroundColor: "background.primary",
+          backgroundColor: "brand.brown",
           display: "flex",
           height: { xs: "12%", sm: "12%", md: "100%", lg: "100%" },
           flexDirection: "column",

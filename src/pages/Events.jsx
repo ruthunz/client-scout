@@ -9,10 +9,16 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { eventdata } from "./eventsdata";
 import EventInfo from "../components/events/EventInfo";
+import { useEffect } from "react";
+
+import eventService from "../services/event.service";
+import moment from "moment-with-locales-es6";
 
 const bookedStyle = { backgroundColor: "#461622", color: "white" };
 
 const Events = () => {
+  moment.locale("es");
+  const [events, setEvents] = useState([]);
   const [currentEvents, setCurrentEvents] = useState([]);
   const [month, setMonth] = useState();
   const setDateOnCalendar = (dates) => {
@@ -20,6 +26,13 @@ const Events = () => {
     setCurrentEvents([...data]);
     setMonth(data[0]);
   };
+
+  useEffect(() => {
+    eventService.getAllEvents().then((eventList) => {
+      setEvents(eventList);
+    });
+  }, []);
+
   return (
     <Box
       sx={{
@@ -66,34 +79,37 @@ const Events = () => {
               margin: "8px",
             }}
           >
-            {eventdata.map((event) => (
-              <Accordion
-                square
-                key={event.title}
-                onChange={() => setDateOnCalendar([...event.dates])}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls={event.title}
-                  id={event.title}
-                  sx={{
-                    borderRadius: "0 !important",
-                    backgroundColor: "background.primary",
-                    color: "brand.lightgrey",
-                  }}
+            {events &&
+              events.map((event) => (
+                <Accordion
+                  square
+                  key={event.title}
+                  onChange={() => setDateOnCalendar([...event.dates])}
                 >
-                  <Typography sx={{ width: "80%", flexShrink: 0 }}>
-                    {event.title}
-                  </Typography>
-                  <Typography sx={{ color: "brand.lightgrey" }}>
-                    {event.dates[0]}
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <EventInfo event={event} />
-                </AccordionDetails>
-              </Accordion>
-            ))}
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls={event.title}
+                    id={event.title}
+                    sx={{
+                      borderRadius: "0 !important",
+                      backgroundColor: "brand.brown",
+                      color: "brand.lightgrey",
+                    }}
+                  >
+                    <Typography sx={{ width: "40%", flexShrink: 0 }}>
+                      {event.title}
+                    </Typography>
+                    <Typography sx={{ color: "brand.lightgrey" }}>
+                      {moment(new Date(event.dates[0]))
+                        .locale("es")
+                        .format("ll")}
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <EventInfo event={event} />
+                  </AccordionDetails>
+                </Accordion>
+              ))}
           </Box>
 
           <Paper

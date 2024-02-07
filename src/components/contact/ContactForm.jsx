@@ -94,7 +94,7 @@ const ContactForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 id="firstName"
-                sx={{ input: { color: "background.primary" } }}
+                sx={{ input: { color: "brand.brown" } }}
               />
               {errors.firstName && touched.firstName && (
                 <p style={{ color: "red" }}>{errors.firstName}</p>
@@ -159,7 +159,7 @@ const ContactForm = () => {
                 fullWidth
                 disabled={isSubmitting}
                 sx={{
-                  bgcolor: "background.primary",
+                  bgcolor: "brand.brown",
                   color: "white",
                   borderRadius: 0,
                 }}

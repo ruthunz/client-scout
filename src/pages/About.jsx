@@ -37,7 +37,7 @@ const About = () => {
       <Box
         sx={{
           width: { xs: "100%", sm: "100%", md: "24%", lg: "24%" },
-          backgroundColor: "background.primary",
+          backgroundColor: "brand.brown",
           clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)",
         }}
       >
