@@ -9,9 +9,14 @@ export const eventFormSchema = yup.object().shape({
     .of(yup.string())
     .min(1, "Se debe seleccionar al menos una rama")
     .required("Requerido"),
+  requirements: yup
+    .array()
+    .of(yup.string())
+    .min(1, "Se debe crear al menos un requerimiento")
+    .required("Requerido"),
+  dates: yup
+    .array()
+    .of(yup.string())
+    .min(1, "Se debe seleccionar al menos una fecha")
+    .required("Requerido"),
 });
-/*
-  
-  requirements: yup.array().of(yup.string()),
-  dates: yup.array().of(yup.string()),
-*/
