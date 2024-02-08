@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { formSchema } from "./formSchema";
 import sessionService from "../services/session.service";
 import { useNavigate } from "react-router-dom";
+import EventManager from "../components/SignIn/EventManager";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -37,10 +38,6 @@ const SignIn = () => {
     onSubmit: onLogin,
   });
 
-  const onLogout = async () => {
-    await sessionService.logout();
-    navigate(0);
-  };
   return (
     <Box
       sx={{
@@ -54,7 +51,7 @@ const SignIn = () => {
       <Box
         sx={{
           backgroundColor: "brand.brown",
-          clipPath: "polygon(0 0, 100% 0, 85% 100%, 15% 100%)",
+
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -142,20 +139,7 @@ const SignIn = () => {
             </form>
           </Box>
         ) : (
-          <Button
-            type="submit"
-            variant="text"
-            fullWidth
-            sx={{
-              bgcolor: "brand.grey",
-              color: "brand.brown",
-              borderRadius: 0,
-              margin: "16px 0 16px 0",
-            }}
-            onClick={() => onLogout()}
-          >
-            Salir
-          </Button>
+          <EventManager />
         )}
       </Box>
     </Box>

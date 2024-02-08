@@ -141,7 +141,6 @@ const Brownsea = () => {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
             flexWrap: "wrap",
             flexDirection: "row-reverse",
           }}
@@ -230,7 +229,6 @@ const Brownsea = () => {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
             flexWrap: "wrap",
             flexDirection: "row-reverse",
             margin: "24px 16px 16px 16px",

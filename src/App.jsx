@@ -20,7 +20,7 @@ const navLinks = [
   { title: "Quienes Somos", path: "/about" },
   { title: "Contactanos", path: "/contact" },
   { title: "Eventos", path: "/events" },
-  { title: sessionService.isLogged() ? "Salir" : "Ingresar", path: "/login" },
+  { title: sessionService.isLogged() ? "Admin" : "Ingresar", path: "/login" },
 ];
 
 function App() {
