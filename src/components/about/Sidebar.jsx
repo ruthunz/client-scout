@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-} from "@mui/material";
+import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 import { NavLink } from "react-router-dom";
 

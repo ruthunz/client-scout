@@ -1,6 +1,6 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
-import { flame, homeContainer, homeContainerSection2 } from "./styles";
+import { flame, homeContainer } from "./styles";
 
 const Home = () => {
   return (

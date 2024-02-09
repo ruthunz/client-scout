@@ -1,9 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import Sidebar from "../components/about/Sidebar";
-import { Routes, Route, Outlet } from "react-router-dom";
-import Brownsea from "../components/about/Brownsea";
-import Fundaments from "../components/about/Fundaments";
+import { Outlet } from "react-router-dom";
 
 const SideBarLinks = [
   { title: "Brownsea", path: "/about/brownsea" },

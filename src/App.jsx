@@ -1,19 +1,25 @@
+import React from "react";
 import { useThemeContext } from "./theme/ThemeContextProvider";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box, ThemeProvider } from "@mui/material";
-import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
-import Contact from "./pages/Contact";
-import About from "./pages/About";
-import Events from "./pages/Events";
-import Brownsea from "./components/about/Brownsea";
-import Fundaments from "./components/about/Fundaments";
-import Mision from "./components/about/Mision";
-import Definition from "./components/about/Definition";
-import Purpose from "./components/about/Purpose";
-import SignIn from "./pages/SignIn";
 import sessionService from "./services/session.service";
+
+const LazyHome = React.lazy(() => import("./pages/Home"));
+const LazyAbout = React.lazy(() => import("./pages/About"));
+const LazyBrownsea = React.lazy(() => import("./components/about/Brownsea"));
+const LazyFundaments = React.lazy(() =>
+  import("./components/about/Fundaments")
+);
+const LazyDefinition = React.lazy(() =>
+  import("./components/about/Definition")
+);
+const LazyPurpose = React.lazy(() => import("./components/about/Purpose"));
+const LazyMision = React.lazy(() => import("./components/about/Mision"));
+const LazyContact = React.lazy(() => import("./pages/Contact"));
+const LazyEvents = React.lazy(() => import("./pages/Events"));
+const LazySignIn = React.lazy(() => import("./pages/SignIn"));
 
 const navLinks = [
   { title: "Inicio", path: "/" },
@@ -40,19 +46,103 @@ function App() {
         >
           <Navbar navLinks={navLinks} />
           <Routes>
-            <Route index element={<Home />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />}>
-              <Route index element={<Brownsea />} />
-              <Route path="brownsea" element={<Brownsea />} />
-              <Route path="fundaments" element={<Fundaments />} />
-              <Route path="definition" element={<Definition />} />
-              <Route path="purpose" element={<Purpose />} />
-              <Route path="mision" element={<Mision />} />
+            <Route
+              index
+              element={
+                <React.Suspense fallback="Loading...">
+                  <LazyHome />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <React.Suspense fallback="Loading...">
+                  <LazyHome />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <React.Suspense fallback="Loading...">
+                  <LazyAbout />
+                </React.Suspense>
+              }
+            >
+              <Route
+                index
+                element={
+                  <React.Suspense fallback="Loading...">
+                    <LazyBrownsea />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="brownsea"
+                element={
+                  <React.Suspense fallback="Loading...">
+                    <LazyBrownsea />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="fundaments"
+                element={
+                  <React.Suspense fallback="Loading...">
+                    <LazyFundaments />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="definition"
+                element={
+                  <React.Suspense fallback="Loading...">
+                    <LazyDefinition />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="purpose"
+                element={
+                  <React.Suspense fallback="Loading...">
+                    <LazyPurpose />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="mision"
+                element={
+                  <React.Suspense fallback="Loading...">
+                    <LazyMision />
+                  </React.Suspense>
+                }
+              />
             </Route>
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/login" element={<SignIn />} />
+            <Route
+              path="/contact"
+              element={
+                <React.Suspense fallback="Loading...">
+                  <LazyContact />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/events"
+              element={
+                <React.Suspense fallback="Loading...">
+                  <LazyEvents />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <React.Suspense fallback="Loading...">
+                  <LazySignIn />
+                </React.Suspense>
+              }
+            />
           </Routes>
         </Box>
       </ThemeProvider>
