@@ -1,4 +1,4 @@
-import { Box, Typography, Paper } from "@mui/material";
+import { Box, Typography, Paper, Input, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { DayPicker } from "react-day-picker";
 
@@ -14,13 +14,18 @@ import { useEffect } from "react";
 import eventService from "../services/event.service";
 import moment from "moment-with-locales-es6";
 
+import { es } from "date-fns/locale";
+
 const bookedStyle = { backgroundColor: "#461622", color: "white" };
+const searchKeys = ["title", "organizer"];
 
 const Events = () => {
   moment.locale("es");
   const [events, setEvents] = useState([]);
   const [currentEvents, setCurrentEvents] = useState([]);
   const [month, setMonth] = useState();
+  const [search, setSearch] = useState("");
+
   const setDateOnCalendar = (dates) => {
     const data = dates.map((date) => new Date(date));
     setCurrentEvents([...data]);
@@ -28,10 +33,16 @@ const Events = () => {
   };
 
   useEffect(() => {
-    eventService.getAllEvents().then((eventList) => {
+    eventService.getUpcomingEvents().then((eventList) => {
       setEvents(eventList);
     });
   }, []);
+
+  const searcher = (data) => {
+    return data.filter((course) =>
+      searchKeys.some((key) => course[key].toLowerCase().includes(search))
+    );
+  };
 
   return (
     <Box
@@ -73,6 +84,13 @@ const Events = () => {
             paddingTop: "16px",
           }}
         >
+          <TextField
+            placeholder="Buscar Nombre u Organizador..."
+            onChange={(e) => setSearch(e.target.value)}
+            autoComplete="off"
+            size="small"
+            sx={{ width: "100%" }}
+          />
           <Box
             sx={{
               width: { xs: "100%", sm: "100%", md: "64%", lg: "64%" },
@@ -80,7 +98,7 @@ const Events = () => {
             }}
           >
             {events &&
-              events.map((event) => (
+              searcher(events).map((event) => (
                 <Accordion
                   square
                   key={event.title}
@@ -137,6 +155,7 @@ const Events = () => {
                 modifiers={{ booked: currentEvents }}
                 modifiersStyles={{ booked: bookedStyle }}
                 month={month}
+                locale={es}
               />
             </Box>
           </Paper>

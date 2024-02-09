@@ -24,11 +24,19 @@ import {
 import { useFormik } from "formik";
 import { eventFormSchema } from "./eventFormSchema";
 import { motion } from "framer-motion";
-import { Delete, Add, CheckCircle } from "@mui/icons-material";
+import {
+  Delete,
+  Add,
+  CheckCircle,
+  VerifiedUser,
+  SupervisedUserCircle,
+} from "@mui/icons-material";
 
 import { DayPicker } from "react-day-picker";
 import { isSameDay } from "date-fns";
 import EventList from "./EventList";
+import eventService from "../../services/event.service";
+import { es } from "date-fns/locale";
 
 const organizers = ["Brownsea", "Distrito"];
 const scoutBranches = ["Lobatos", "Exploradores", "Rovers", "Pioneros"];
@@ -41,7 +49,7 @@ const EventManager = () => {
   const [editMode, setEditMode] = useState(false);
 
   const handleCreateEvent = async (values, actions) => {
-    const data = {
+    const body = {
       title: values.title,
       organizer: values.organizer,
       description: values.description,
@@ -50,8 +58,15 @@ const EventManager = () => {
       dates: values.dates,
     };
     actions.setSubmitting(true);
-    console.log("DATA SENT: " + JSON.stringify(data));
-    //logic
+    eventService.createEvent(body).then((data) => {
+      if (data.id) {
+        window.alert("Evento creado con exito");
+        navigate(0);
+      } else {
+        window.alert("El evento no pudo ser creado, estado: " + data.status);
+        navigate(0);
+      }
+    });
     actions.resetForm();
     actions.setSubmitting(false);
   };
@@ -123,8 +138,7 @@ const EventManager = () => {
   };
 
   const handleUpdateEvent = () => {
-    const data = {
-      id: pickedEvent.id,
+    const body = {
       title: formik.values.title,
       organizer: formik.values.organizer,
       description: formik.values.description,
@@ -134,8 +148,19 @@ const EventManager = () => {
     };
 
     formik.setSubmitting(true);
-    console.log("DATA UPDATE: " + JSON.stringify(data));
-    //logic
+
+    eventService.updateEvent(body, pickedEvent.id).then((data) => {
+      if (data.id) {
+        window.alert("Evento actualizado con exito");
+        navigate(0);
+      } else {
+        window.alert(
+          "El evento no pudo ser actualizado, estado: " + data.status
+        );
+        navigate(0);
+      }
+    });
+
     formik.resetForm();
     formik.setSubmitting(false);
 
@@ -143,9 +168,28 @@ const EventManager = () => {
     setEditMode(false);
   };
 
+  const handleCancelUpdate = () => {
+    setPickedEvent({});
+    formik.resetForm();
+    setEditMode(false);
+  };
+
   const handleDeleteEvent = (event) => {
     const res = window.confirm("Estas seguro de eliminar este evento?");
-    console.log("RES: " + res);
+    if (res) {
+      eventService.deleteEvent(event.id).then((data) => {
+        console.log("TMR: " + JSON.stringify(data));
+        if (data.status === 204) {
+          window.alert("Evento eliminado con exito");
+          navigate(0);
+        } else {
+          window.alert(
+            "El evento no pudo ser eliminado, estado: " + data.status
+          );
+          navigate(0);
+        }
+      });
+    }
   };
 
   return (
@@ -158,23 +202,40 @@ const EventManager = () => {
         flexDirection: "row",
         flexWrap: "wrap",
         overflowY: "auto",
+        "&::-webkit-scrollbar": {
+          display: "none",
+        },
       }}
     >
-      <Button
+      <Box
         sx={{
-          bgcolor: "brand.grey",
-          color: "brand.brown",
-          borderRadius: 0,
-          margin: "16px 0 16px 0",
-          "&:hover": {
-            backgroundColor: "brand.lightgrey",
-          },
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
           width: "100%",
+          padding: "0 8px 0 16px",
+          flexWrap: "wrap",
         }}
-        onClick={() => onLogout()}
       >
-        Cerrar Sesión
-      </Button>
+        <Typography variant="h4" sx={{ color: "brand.brown" }}>
+          ADMINISTRACION
+        </Typography>
+        <Button
+          sx={{
+            bgcolor: "brand.brown",
+            color: "brand.lightgrey",
+            borderRadius: 0,
+            margin: "16px 24px 16px 24px",
+            "&:hover": {
+              backgroundColor: "brand.lighbrown",
+            },
+          }}
+          onClick={() => onLogout()}
+        >
+          <SupervisedUserCircle />
+          Cerrar Sesión
+        </Button>
+      </Box>
 
       <Box
         sx={{
@@ -182,14 +243,24 @@ const EventManager = () => {
           padding: "24px",
           height: "90%",
           overflowY: "auto",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+          borderRight: " 1px solid",
         }}
       >
+        <Typography
+          variant="h5"
+          sx={{ width: "100%", color: "brand.brown", marginBottom: "8px" }}
+        >
+          {editMode ? "Editar Evento" : "Crear Evento"}
+        </Typography>
         <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={1}>
             <Grid xs={12} item>
               <TextField
                 placeholder="Título del evento"
-                label="titulo"
+                label="Título"
                 variant="outlined"
                 fullWidth
                 required
@@ -198,6 +269,7 @@ const EventManager = () => {
                 onBlur={formik.handleBlur}
                 id="title"
                 sx={{ input: { color: "brand.brown" } }}
+                size="small"
               />
               {formik.errors.title && formik.touched.title && (
                 <p style={{ color: "red" }}>{formik.errors.title}</p>
@@ -215,6 +287,7 @@ const EventManager = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 id="description"
+                size="small"
               />
               {formik.errors.description && formik.touched.description && (
                 <p style={{ color: "red" }}>{formik.errors.description}</p>
@@ -282,14 +355,15 @@ const EventManager = () => {
                   value={formik.values.requirement}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  margin="normal"
                   variant="outlined"
+                  size="small"
+                  sx={{ margin: "8px 16px 8px 0px" }}
                 />
                 <Fab
                   variant="contained"
                   color="primary"
                   onClick={handleAddRequirement}
-                  sx={{ margin: "0 16px 0 16px" }}
+                  size="small"
                 >
                   <Add />
                 </Fab>
@@ -319,12 +393,15 @@ const EventManager = () => {
               </List>
             </Grid>
             <Grid item xs={12}>
-              <FormLabel id="datesLabel">Fechas</FormLabel>
+              <FormLabel id="datesLabel"> Seleccionar Fechas</FormLabel>
               <DayPicker
                 mode="multiple"
                 min={1}
                 selected={formik.values.dates}
                 onDayClick={handleDayClick}
+                style={{ fontSize: "12px" }}
+                locale={es}
+                modifiersStyles={{ selected: pickerStyle }}
               />
               {formik.errors.dates && (
                 <p style={{ color: "red" }}>{formik.errors.dates}</p>
@@ -332,19 +409,35 @@ const EventManager = () => {
             </Grid>
             <Grid item xs={12}>
               {editMode ? (
-                <Button
-                  variant="text"
-                  fullWidth
-                  disabled={formik.isSubmitting}
-                  sx={{
-                    bgcolor: "brand.brown",
-                    color: "white",
-                    borderRadius: 0,
-                  }}
-                  onClick={() => handleUpdateEvent()}
-                >
-                  Actualizar Evento
-                </Button>
+                <>
+                  <Button
+                    variant="text"
+                    fullWidth
+                    disabled={formik.isSubmitting}
+                    sx={{
+                      bgcolor: "brand.brown",
+                      color: "white",
+                      borderRadius: 0,
+                    }}
+                    onClick={() => handleUpdateEvent()}
+                  >
+                    Actualizar Evento
+                  </Button>
+                  <Button
+                    variant="text"
+                    fullWidth
+                    disabled={formik.isSubmitting}
+                    sx={{
+                      bgcolor: "brand.brown",
+                      color: "white",
+                      borderRadius: 0,
+                      margin: "16px 0 16px 0",
+                    }}
+                    onClick={() => handleCancelUpdate()}
+                  >
+                    CANCELAR
+                  </Button>
+                </>
               ) : (
                 <Button
                   type="submit"
@@ -373,10 +466,18 @@ const EventManager = () => {
         }}
       >
         {!editMode && (
-          <EventList
-            handlePickedEvent={handlePickedEvent}
-            handleDeleteEvent={handleDeleteEvent}
-          />
+          <>
+            <Typography
+              variant="h5"
+              sx={{ width: "100%", color: "brand.brown", marginBottom: "8px" }}
+            >
+              Lista de Eventos
+            </Typography>
+            <EventList
+              handlePickedEvent={handlePickedEvent}
+              handleDeleteEvent={handleDeleteEvent}
+            />
+          </>
         )}
       </Box>
     </Box>

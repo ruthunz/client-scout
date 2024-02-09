@@ -6,28 +6,82 @@ const baseUrl = "http://localhost:3000/v1";
 const getAllEvents = async () => {
   try {
     const { data } = await axios.get(`${baseUrl}/events`);
-    console.log(data);
     return data;
   } catch (error) {
     return [];
   }
 };
 
-// const getAllEvents = async () => {
-//   if (sessionService.isLogged()) return [];
-//   try {
-//     const config = {
-//       headers: {
-//         Authorization: sessionService.getSessionToken(),
-//       },
-//     };
-//     const { data } = await axios.get(`${baseUrl}/events`, config);
-//     console.log(data);
-//     return data;
-//   } catch (error) {
-//     window.alert(error.message);
-//     return [];
-//   }
-// };
+const getUpcomingEvents = async () => {
+  try {
+    const { data } = await axios.get(`${baseUrl}/events/public/upcoming`);
+    return data;
+  } catch (error) {
+    return [];
+  }
+};
 
-export default { getAllEvents };
+const createEvent = async (body) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: sessionService.getSessionToken(),
+      },
+    };
+    const { data } = await axios.post(`${baseUrl}/events`, body, config);
+    return data;
+  } catch (error) {
+    if (error.AxiosError) {
+      sessionService.logout();
+    }
+    return error;
+  }
+};
+
+const updateEvent = async (body, eventId) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: sessionService.getSessionToken(),
+      },
+    };
+    const { data } = await axios.patch(
+      `${baseUrl}/events/${eventId}`,
+      body,
+      config
+    );
+    return data;
+  } catch (error) {
+    if (error.AxiosError) {
+      sessionService.logout();
+    }
+    return error;
+  }
+};
+
+const deleteEvent = async (eventId) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: sessionService.getSessionToken(),
+      },
+    };
+    return await axios.delete(`${baseUrl}/events/${eventId}`, config);
+  } catch (error) {
+    if (error.AxiosError) {
+      sessionService.logout();
+    }
+    return error;
+  }
+};
+
+export default {
+  getAllEvents,
+  createEvent,
+  updateEvent,
+  deleteEvent,
+  getUpcomingEvents,
+};

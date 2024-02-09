@@ -10,15 +10,26 @@ import EventInfo from "../events/EventInfo";
 
 import moment from "moment-with-locales-es6";
 import eventService from "../../services/event.service";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, TextField } from "@mui/material";
+
+const searchKeys = ["title", "organizer"];
 
 const EventList = ({ handlePickedEvent, handleDeleteEvent }) => {
   const [events, setEvents] = useState([]);
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
     eventService.getAllEvents().then((eventList) => {
       setEvents(eventList);
     });
   }, []);
+
+  const searcher = (data) => {
+    return data.filter((course) =>
+      searchKeys.some((key) => course[key].toLowerCase().includes(search))
+    );
+  };
+
   return (
     <Box
       sx={{
@@ -26,8 +37,15 @@ const EventList = ({ handlePickedEvent, handleDeleteEvent }) => {
         margin: "8px",
       }}
     >
+      <TextField
+        placeholder="Buscar por Nombre u Organizador..."
+        onChange={(e) => setSearch(e.target.value)}
+        autoComplete="off"
+        size="small"
+        sx={{ width: "100%", margin: "0 0 24px 0" }}
+      />
       {events &&
-        events.map((event) => (
+        searcher(events).map((event) => (
           <Accordion square key={event.id}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}

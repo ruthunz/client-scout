@@ -1,4 +1,6 @@
 import { Box, Typography } from "@mui/material";
+import moment from "moment";
+
 import React from "react";
 
 const titles = { fontWeight: "bold" };
@@ -34,7 +36,7 @@ const EventInfo = ({ event }) => {
 
         <ul>
           {event.dates.map((date) => (
-            <li key={date}>{date}</li>
+            <li key={date}>{moment(date).format("L")}</li>
           ))}
         </ul>
       </Box>
