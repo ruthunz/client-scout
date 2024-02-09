@@ -1,4 +1,4 @@
-import { Box, Typography, Paper, Input, TextField } from "@mui/material";
+import { Box, Typography, Paper, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { DayPicker } from "react-day-picker";
 
@@ -19,7 +19,6 @@ const bookedStyle = { backgroundColor: "#461622", color: "white" };
 const searchKeys = ["title", "organizer"];
 
 const Events = () => {
-  moment.locale("es");
   const [events, setEvents] = useState([]);
   const [currentEvents, setCurrentEvents] = useState([]);
   const [month, setMonth] = useState();
@@ -83,20 +82,22 @@ const Events = () => {
             paddingTop: "16px",
           }}
         >
-          <TextField
-            placeholder="Buscar Nombre u Organizador..."
-            onChange={(e) => setSearch(e.target.value)}
-            autoComplete="off"
-            size="small"
-            sx={{ width: "100%" }}
-          />
+          {events.length > 0 && (
+            <TextField
+              placeholder="Buscar Nombre u Organizador..."
+              onChange={(e) => setSearch(e.target.value)}
+              autoComplete="off"
+              size="small"
+              sx={{ width: "100%" }}
+            />
+          )}
           <Box
             sx={{
               width: { xs: "100%", sm: "100%", md: "64%", lg: "64%" },
               margin: "8px",
             }}
           >
-            {events &&
+            {events.length > 0 ? (
               searcher(events).map((event) => (
                 <Accordion
                   square
@@ -126,7 +127,12 @@ const Events = () => {
                     <EventInfo event={event} />
                   </AccordionDetails>
                 </Accordion>
-              ))}
+              ))
+            ) : (
+              <Typography>
+                Por el momento no hay eventos para mostrar
+              </Typography>
+            )}
           </Box>
 
           <Paper

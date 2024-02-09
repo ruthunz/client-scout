@@ -37,14 +37,17 @@ const EventList = ({ handlePickedEvent, handleDeleteEvent }) => {
         margin: "8px",
       }}
     >
-      <TextField
-        placeholder="Buscar por Nombre u Organizador..."
-        onChange={(e) => setSearch(e.target.value)}
-        autoComplete="off"
-        size="small"
-        sx={{ width: "100%", margin: "0 0 24px 0" }}
-      />
-      {events &&
+      {events.length > 0 && (
+        <TextField
+          placeholder="Buscar por Nombre u Organizador..."
+          onChange={(e) => setSearch(e.target.value)}
+          autoComplete="off"
+          size="small"
+          sx={{ width: "100%", margin: "0 0 24px 0" }}
+        />
+      )}
+
+      {events.length > 0 ? (
         searcher(events).map((event) => (
           <Accordion square key={event.id}>
             <AccordionSummary
@@ -96,7 +99,10 @@ const EventList = ({ handlePickedEvent, handleDeleteEvent }) => {
               <EventInfo event={event} />
             </AccordionDetails>
           </Accordion>
-        ))}
+        ))
+      ) : (
+        <Typography>Por el momento no hay eventos para mostrar</Typography>
+      )}
     </Box>
   );
 };

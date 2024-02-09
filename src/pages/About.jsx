@@ -1,14 +1,14 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { Suspense } from "react";
 import Sidebar from "../components/about/Sidebar";
 import { Outlet } from "react-router-dom";
 
 const SideBarLinks = [
-  { title: "Brownsea", path: "/about/brownsea" },
-  { title: "Fundamentos del Movimiento", path: "/about/fundaments" },
-  { title: "Definicion", path: "/about/definition" },
-  { title: "Propósito del Movimiento", path: "/about/purpose" },
-  { title: "Misión y Visión", path: "/about/mision" },
+  { title: "Brownsea", path: "brownsea" },
+  { title: "Fundamentos del Movimiento", path: "fundaments" },
+  { title: "Definicion", path: "definition" },
+  { title: "Propósito del Movimiento", path: "purpose" },
+  { title: "Misión y Visión", path: "mision" },
 ];
 
 const About = () => {
@@ -30,7 +30,9 @@ const About = () => {
           width: { xs: "100%", sm: "100%", md: "76%", lg: "76%" },
         }}
       >
-        <Outlet />
+        <Suspense fallback="Loading">
+          <Outlet />
+        </Suspense>
       </Box>
       <Box
         sx={{
