@@ -1,7 +1,7 @@
 import axios from "axios";
 import sessionService from "./session.service";
 
-const baseUrl = "http://localhost:3000/v1";
+const baseUrl = import.meta.env.VITE_API_URL;
 
 const getAllEvents = async () => {
   try {

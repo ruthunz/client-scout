@@ -1,14 +1,17 @@
 import axios from "axios";
-import { Navigate } from "react-router-dom";
 
-const baseUrl = "http://localhost:3000/v1";
+const baseUrl = import.meta.env.VITE_API_URL;
 
 const login = async (credentials) => {
   try {
     const { data } = await axios.post(`${baseUrl}/auth/login`, credentials);
     setSession(data);
   } catch (error) {
-    window.alert("usuario o contraseña incorrectos");
+    if (error.message === "Network Error") {
+      window.alert("No hay conexión al servidor");
+    } else {
+      window.alert("usuario o contraseña incorrectos");
+    }
   }
 };
 
