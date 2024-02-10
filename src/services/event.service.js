@@ -10,6 +10,7 @@ const getAllEvents = async () => {
   } catch (error) {
     return [];
   }
+  //
 };
 
 const getUpcomingEvents = async () => {
