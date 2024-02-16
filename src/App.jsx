@@ -23,7 +23,7 @@ const LazySignIn = React.lazy(() => import("./pages/SignIn"));
 
 const navLinks = [
   { title: "Inicio", path: "/" },
-  { title: "Quienes Somos", path: "/about/brownsea" },
+  { title: "Quienes Somos", path: "/about" },
   { title: "Contactanos", path: "/contact" },
   { title: "Eventos", path: "/events" },
   { title: sessionService.isLogged() ? "Admin" : "Ingresar", path: "/login" },
@@ -46,17 +46,17 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route path="/" element={<LazyHome />} />
-              <Route path="/about" element={<LazyAbout />}>
-                <Route path="brownsea" element={<LazyBrownsea />} />
+              <Route index element={<LazyHome />} />
+              <Route path="about/*" element={<LazyAbout />}>
+                <Route index element={<LazyBrownsea />} />
                 <Route path="fundaments" element={<LazyFundaments />} />
                 <Route path="definition" element={<LazyDefinition />} />
                 <Route path="purpose" element={<LazyPurpose />} />
                 <Route path="mision" element={<LazyMision />} />
               </Route>
-              <Route path="/contact" element={<LazyContact />} />
-              <Route path="/events" element={<LazyEvents />} />
-              <Route path="/login" element={<LazySignIn />} />
+              <Route path="contact" element={<LazyContact />} />
+              <Route path="events" element={<LazyEvents />} />
+              <Route path="login" element={<LazySignIn />} />
             </Route>
           </Routes>
         </Box>

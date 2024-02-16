@@ -4,7 +4,6 @@ import Sidebar from "../components/about/Sidebar";
 import { Outlet } from "react-router-dom";
 
 const SideBarLinks = [
-  { title: "Brownsea", path: "brownsea" },
   { title: "Fundamentos del Movimiento", path: "fundaments" },
   { title: "Definicion", path: "definition" },
   { title: "Propósito del Movimiento", path: "purpose" },
