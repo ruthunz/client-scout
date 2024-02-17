@@ -6,10 +6,23 @@ import {
   ListItemText,
 } from "@mui/material";
 import React from "react";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { drawerStyle } from "./styles";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import sessionService from "../../services/session.service";
 
 const NavListDrawer = ({ navLinks, setOpenDrawer }) => {
+  const navigate = useNavigate();
+
+  const handleOpenAdmin = () => {
+    if (sessionService.isLogged()) {
+      navigate("/admin");
+    } else {
+      navigate("/login");
+    }
+    setOpenDrawer(false);
+  };
+
   return (
     <Box sx={drawerStyle}>
       <nav>
@@ -37,6 +50,25 @@ const NavListDrawer = ({ navLinks, setOpenDrawer }) => {
               </ListItemButton>
             </ListItem>
           ))}
+          <ListItem
+            key={"user"}
+            disablePadding
+            divider
+            sx={{
+              color: "white",
+            }}
+          >
+            <ListItemButton
+              onClick={() => handleOpenAdmin()}
+              sx={{
+                "&.active": {
+                  backgroundColor: "brand.pinkbrown",
+                },
+              }}
+            >
+              <AccountCircleIcon fontSize="large" />
+            </ListItemButton>
+          </ListItem>
         </List>
       </nav>
     </Box>
