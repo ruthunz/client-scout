@@ -10,10 +10,20 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavLink } from "react-router-dom";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { NavLink, useNavigate } from "react-router-dom";
+import sessionService from "../../services/session.service";
 
 const Navbar = ({ navLinks }) => {
   const [OpenDrawer, setOpenDrawer] = useState(false);
+  const navitage = useNavigate();
+  const handleOpenAdmin = () => {
+    if (sessionService.isLogged()) {
+      navitage("/admin");
+    } else {
+      navitage("/login");
+    }
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -57,6 +67,20 @@ const Navbar = ({ navLinks }) => {
                 {item.title}
               </Button>
             ))}
+            <Button
+              color="inherit"
+              key={"user"}
+              sx={{
+                fontSize: "16px",
+                borderRadius: 0,
+                "&.active": {
+                  backgroundColor: "brand.pinkbrown",
+                },
+              }}
+              onClick={() => handleOpenAdmin()}
+            >
+              <AccountCircleIcon fontSize="large" />
+            </Button>
           </Box>
           <IconButton
             size="large"
@@ -72,7 +96,6 @@ const Navbar = ({ navLinks }) => {
           </IconButton>
         </Toolbar>
       </AppBar>
-
       <Drawer
         open={OpenDrawer}
         anchor="left"

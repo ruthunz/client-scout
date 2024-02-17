@@ -33,8 +33,10 @@ const createEvent = async (body) => {
     const { data } = await axios.post(`${baseUrl}/events`, body, config);
     return data;
   } catch (error) {
-    if (error.AxiosError) {
+    console.log("CATCH ERROR: " + JSON.stringify(error));
+    if (error.message.includes("401")) {
       sessionService.logout();
+      return { status: 401 };
     }
     return error;
   }
@@ -55,8 +57,9 @@ const updateEvent = async (body, eventId) => {
     );
     return data;
   } catch (error) {
-    if (error.AxiosError) {
+    if (error.message.includes("401")) {
       sessionService.logout();
+      return { status: 401 };
     }
     return error;
   }
@@ -72,8 +75,9 @@ const deleteEvent = async (eventId) => {
     };
     return await axios.delete(`${baseUrl}/events/${eventId}`, config);
   } catch (error) {
-    if (error.AxiosError) {
+    if (error.message.includes("401")) {
       sessionService.logout();
+      return { status: 401 };
     }
     return error;
   }

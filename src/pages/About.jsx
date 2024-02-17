@@ -3,14 +3,7 @@ import React, { Suspense } from "react";
 import Sidebar from "../components/about/Sidebar";
 import { Outlet } from "react-router-dom";
 
-const SideBarLinks = [
-  { title: "Fundamentos del Movimiento", path: "fundaments" },
-  { title: "Definicion", path: "definition" },
-  { title: "Propósito del Movimiento", path: "purpose" },
-  { title: "Misión y Visión", path: "mision" },
-];
-
-const About = () => {
+const About = ({ sideBarLinks }) => {
   return (
     <Box
       sx={{
@@ -40,7 +33,7 @@ const About = () => {
           clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)",
         }}
       >
-        <Sidebar navLinks={SideBarLinks}></Sidebar>
+        <Sidebar navLinks={sideBarLinks}></Sidebar>
       </Box>
     </Box>
   );

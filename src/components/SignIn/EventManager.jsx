@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import sessionService from "../../services/session.service";
 import { useNavigate } from "react-router-dom";
 import {
@@ -23,12 +23,10 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { eventFormSchema } from "./eventFormSchema";
-import { motion } from "framer-motion";
 import {
   Delete,
   Add,
   CheckCircle,
-  VerifiedUser,
   SupervisedUserCircle,
 } from "@mui/icons-material";
 
@@ -47,6 +45,13 @@ const EventManager = () => {
 
   const [pickedEvent, setPickedEvent] = useState({});
   const [editMode, setEditMode] = useState(false);
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    eventService.getAllEvents().then((eventList) => {
+      setEvents(eventList);
+    });
+  }, []);
 
   const handleCreateEvent = async (values, actions) => {
     const body = {
@@ -60,11 +65,13 @@ const EventManager = () => {
     actions.setSubmitting(true);
     eventService.createEvent(body).then((data) => {
       if (data.id) {
+        setEvents((events) => [...events, { ...data }]);
         window.alert("Evento creado con exito");
-        navigate(0);
+      } else if (data.status === 401) {
+        window.alert("Sesion expirada, inicie nuevamente");
+        navigate("/login");
       } else {
         window.alert("El evento no pudo ser creado, estado: " + data.status);
-        navigate(0);
       }
     });
     actions.resetForm();
@@ -84,9 +91,10 @@ const EventManager = () => {
     validationSchema: eventFormSchema,
     onSubmit: handleCreateEvent,
   });
+
   const onLogout = async () => {
     await sessionService.logout();
-    navigate(0);
+    navigate("/login");
   };
 
   const handleAddRequirement = () => {
@@ -151,13 +159,16 @@ const EventManager = () => {
 
     eventService.updateEvent(body, pickedEvent.id).then((data) => {
       if (data.id) {
+        deleteEventInArray(data.id);
+        setEvents((events) => [...events, { ...data }]);
         window.alert("Evento actualizado con exito");
-        navigate(0);
+      } else if (data.status === 401) {
+        window.alert("Sesion expirada, inicie nuevamente");
+        navigate("/login");
       } else {
         window.alert(
           "El evento no pudo ser actualizado, estado: " + data.status
         );
-        navigate(0);
       }
     });
 
@@ -166,6 +177,10 @@ const EventManager = () => {
 
     setPickedEvent({});
     setEditMode(false);
+  };
+  const deleteEventInArray = (id) => {
+    const updatedList = events.filter((e) => e.id != id);
+    setEvents(updatedList);
   };
 
   const handleCancelUpdate = () => {
@@ -178,15 +193,16 @@ const EventManager = () => {
     const res = window.confirm("Estas seguro de eliminar este evento?");
     if (res) {
       eventService.deleteEvent(event.id).then((data) => {
-        console.log("TMR: " + JSON.stringify(data));
         if (data.status === 204) {
+          deleteEventInArray(event.id);
           window.alert("Evento eliminado con exito");
-          navigate(0);
+        } else if (data.status === 401) {
+          window.alert("Sesion expirada, inicie nuevamente");
+          navigate("/login");
         } else {
           window.alert(
             "El evento no pudo ser eliminado, estado: " + data.status
           );
-          navigate(0);
         }
       });
     }
@@ -474,6 +490,7 @@ const EventManager = () => {
               Lista de Eventos
             </Typography>
             <EventList
+              events={events}
               handlePickedEvent={handlePickedEvent}
               handleDeleteEvent={handleDeleteEvent}
             />

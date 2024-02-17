@@ -4,25 +4,15 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
-import { useEffect } from "react";
 import EventInfo from "../events/EventInfo";
 
 import moment from "moment-with-locales-es6";
-import eventService from "../../services/event.service";
 import { Box, Typography, Button, TextField } from "@mui/material";
 
 const searchKeys = ["title", "organizer"];
 
-const EventList = ({ handlePickedEvent, handleDeleteEvent }) => {
-  const [events, setEvents] = useState([]);
+const EventList = ({ handlePickedEvent, handleDeleteEvent, events }) => {
   const [search, setSearch] = useState("");
-
-  useEffect(() => {
-    eventService.getAllEvents().then((eventList) => {
-      setEvents(eventList);
-    });
-  }, []);
 
   const searcher = (data) => {
     return data.filter((course) =>
